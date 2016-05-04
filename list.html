@@ -1,0 +1,15 @@
+<div ng-controller="ListController">
+
+    <div class="container">
+
+        <div class="itemList" ng-controller="ItemController">
+            <div class="item text-center" ng-repeat="item in items | filter: search | orderBy: sort">
+                <p>{{item.title}}</p>
+                <p>{{item.date}}</p>
+                <img class="image-on-list" ng-src="{{item.url}}" on-error>
+            </div>
+        </div>
+
+    </div>
+
+</div>

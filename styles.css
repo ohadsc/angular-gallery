@@ -1,0 +1,17 @@
+.itemList {
+    width: 100%;
+    height: 100%;
+}
+
+.image-on-list{
+    height: 450px;
+    width: 450px;
+}
+
+.item {
+    margin-bottom: 50px;
+}
+
+.item:first-child {
+    margin-top: 30px;
+}
