@@ -1,6 +1,6 @@
 // note - to get angular to work in jsfiddle, set load type to no wrap in body.
 // create the app
-var app = angular.module('galleryModule', ['angularUtils.directives.dirPagination']);
+var app = angular.module('galleryModule', ['angularUtils.directives.dirPagination', 'angularModalService']);
 
 app.directive('gallery', function () {
 
@@ -36,17 +36,50 @@ app.factory('Items', ['$http', function($http){
     }
 }]);
 
+
+/*
+
+app.controller('ModalController', function($scope, close) {
+
+    $scope.close = function (result) {
+        close(result, 500); // close, but give 500ms for bootstrap to animate
+    };
+});*/
+
+
+
+
 // Controllers
-app.controller('ItemController', function($scope, Items){
+app.controller('ItemController', ['$scope','Items', 'ModalService', function($scope, Items, ModalService){
 
     Items.get(function(response){
         $scope.items = response;
     });
 
-})
+    $scope.itemClicked = function (item){
+        ModalService.showModal({
+            templateUrl: 'modal.html',
+            controller: function ($scope) {
+
+                $scope.item = item;
+
+                $scope.close = function (result) {
+                    //$scope.close(result, 500); // close, but give 500ms for bootstrap to animate
+                };
+
+            }
+        }).then(function(modal) {
+            modal.element.modal();
+            modal.close.then(function(result) {
+                $scope.message = "You said " + result;
+            });
+        });
+    }
+
+}]);
 
 
-app.controller('ListController', function($scope){
+app.controller('ListController', ['$scope', function($scope){
 
 
     $scope.orderProp = 'date';
@@ -64,7 +97,13 @@ app.controller('ListController', function($scope){
         $scope.reverse = !$scope.reverse; //if true make it false and vice versa
     };
 
-});
+    $scope.itemClicked = function (item) {
+
+        debugger;
+
+    }
+
+}]);
 
 
 app.controller("tabsController", function ($scope) {
@@ -72,4 +111,4 @@ app.controller("tabsController", function ($scope) {
     $scope.sortk = 'date'
 
 
-})
+});
