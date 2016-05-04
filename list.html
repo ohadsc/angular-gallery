@@ -3,11 +3,45 @@
     <div class="container">
 
         <div class="itemList" ng-controller="ItemController">
-            <div class="item text-center" ng-repeat="item in items | filter: search | orderBy: sort">
-                <p>{{item.title}}</p>
-                <p>{{item.date}}</p>
-                <img class="image-on-list" ng-src="{{item.url}}" on-error>
+
+            <!--div class="alert alert-info">
+                <p>Sort key: {{orderProp}}</p>
+                <p>Reverse: {{reverse}}</p>
+                <p>Search String : {{search}}</p>
+            </div-->
+
+            <form class="form-inline" style="width: 100%; margin-top: 30px">
+                <div class="form-group" style="width: 100%">
+                    <input style="width: 100%" type="text" ng-model="search" class="form-control" placeholder="Search">
+                </div>
+            </form>
+
+            <div class="tabs"  ng-controller="tabsController">
+                <ul class="list-inline">
+                    <li>Sort by:</li>
+                    <li ng-class="{'tab' : true, 'active' : orderProp == 'date'}" ng-click="tab('date')">Date <span class="glyphicon sort-icon" ng-show="orderProp=='date'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                    </li>
+                    <li ng-class="{'tab' : true, 'active' : orderProp == 'title'}" ng-click="tab('title')">Title <span class="glyphicon sort-icon" ng-show="orderProp=='title'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span></li>
+                </ul>
+
             </div>
+
+            <div class="item text-center" dir-paginate="item in items | filter: search | orderBy: sort : reverse | itemsPerPage:5">
+                <div class="item">
+                    <p><b>{{item.title}}</b></p>
+                    <p>{{ item.date | date : 'dd/MM/yyyy'}}</p>
+                    <img class="image-on-list" ng-src="{{item.url}}" on-error>
+                </div>
+            </div>
+
+            <div class="text-center">
+                <dir-pagination-controls
+                        max-size="5"
+                        direction-links="true"
+                        boundary-links="true" >
+                </dir-pagination-controls>
+            </div>
+
         </div>
 
     </div>
