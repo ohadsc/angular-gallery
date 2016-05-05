@@ -9,7 +9,7 @@
                 <img ng-class="image-on-modal" ng-src="{{item.url}}">
             </div>
             <div class="modal-footer">
-                <h6>{{item.date}}</h6>
+                <h6 style="float: left">{{item.date | toDate | date : 'dd/MM/yyyy'}}</h6>
                 <!--button type="button" ng-click="close('No')" class="btn btn-default" data-dismiss="modal">No</button>
                 <button type="button" ng-click="close('Yes')" class="btn btn-primary" data-dismiss="modal">Yes</button-->
             </div>

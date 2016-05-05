@@ -112,3 +112,10 @@ app.controller("tabsController", function ($scope) {
 
 
 });
+
+app.filter( 'toDate', function() {
+        return function( input ) {
+            var date = new Date(input)
+            return date;
+        }
+    });
