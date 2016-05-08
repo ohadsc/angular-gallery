@@ -1,8 +1,6 @@
-<div ng-controller="ListController">
+<div class="container">
 
-    <div class="container">
-
-        <div class="itemList" ng-controller="ItemController">
+        <div class="itemList">
 
             <!--div class="alert alert-info">
                 <p>Sort key: {{orderProp}}</p>
@@ -16,7 +14,7 @@
                 </div>
             </form>
 
-            <div class="tabs"  ng-controller="tabsController">
+            <div class="tabs" >
                 <ul class="list-inline">
                     <li>Sort by:</li>
                     <li ng-class="{'tab' : true, 'active' : orderProp == 'date'}" ng-click="tab('date')">Date <span class="glyphicon sort-icon" ng-show="orderProp=='date'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>

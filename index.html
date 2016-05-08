@@ -1,29 +1,31 @@
 <!doctype html>
 
-<header>
+<head>
     <title>Gallery</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <script src="https://code.angularjs.org/1.4.9/angular.min.js"></script>
+    <script src="https://code.angularjs.org/1.5.0/angular.min.js"></script>
+    <script src="https://code.angularjs.org/1.5.0/angular-route.min.js"></script>
     <script style="services/images_service.js"></script>
     <script src="https://rawgit.com/dwmkerr/angular-modal-service/master/dst/angular-modal-service.js"></script>
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <script src="app.js"></script>
     <script src="directives/dirPagination.js"></script>
     <link rel="stylesheet" type="text/css" href="styles/styles.css">
+    <script src="filters/to-date-filter.js"></script>
     <script src="directives/gallery.js"></script>
     <script src="factories/items.js"></script>
     <script src="directives/arrow-clicks.js"></script>
-    <script src="controllers/item-controller.js"></script>
     <script src="directives/on-error.js"></script>
 
     <!--script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/1.3.2/ui-bootstrap.min.js"></script-->
-</header>
+</head>
 
 <html>
     <body>
+
         <div ng-app="galleryModule" ng-strict-di>
-            <gallery></gallery>
+            <ng-view></ng-view>
         </div>
 
     </body>
