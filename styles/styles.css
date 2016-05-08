@@ -54,3 +54,17 @@
 div > ul > li {
     width : 80px;
 }
+
+.left-arrow {
+    position: fixed;
+    top: 50%;
+    right: 85%;
+    cursor: pointer;
+}
+
+.right-arrow {
+    position: fixed;
+    top: 50%;
+    right: 15%;
+    cursor: pointer;
+}
