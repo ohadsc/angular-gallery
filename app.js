@@ -6,10 +6,11 @@ var app = angular.module('galleryModule', ['angularUtils.directives.dirPaginatio
 app.config(['$routeProvider', function ($routeProvider) {
         $routeProvider
             .when("/", {
-                templateUrl: "/templates/gallery.html"
+                templateUrl: "/templates/app.html"
             })
-            .when("/images", {
-                templateUrl: "/templates/image_details.html"
+            .when("/image/:images_id", {
+                templateUrl: "/templates/image_details.html",
+                controller : 'ImageDetailsController'
             }).otherwise({
                 redirectTo:  "/"
         });

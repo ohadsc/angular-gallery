@@ -5,11 +5,11 @@ app.directive('gallery', function () {
     return {
         restrict : 'E',
         templateUrl: 'templates/list.html',
-        controller : ['$scope', 'Items', 'ModalService', function($scope, Items, ModalService){
-
-            Items.get(function(response){
-                $scope.items = response;
-            });
+        scope : {
+            items : "=",
+            displaySearch : "="
+        },
+        controller : ['$scope', 'ModalService', function($scope, ModalService){
 
             $scope.orderProp = 'date';
             $scope.reverse = false;
@@ -27,28 +27,32 @@ app.directive('gallery', function () {
             };
 
             $scope.itemClicked = function (item){
+                console.log("displaySearch : " + $scope.displaySearch);
                 ModalService.showModal({
                     templateUrl: 'templates/modal.html',
-                    controller: ['$scope', function ($scope) {
+                    controller: ['$scope', 'items', 'close', function ($scope, items, close) {
 
                         $scope.item = item;
 
                         $scope.close = function (result) {
-                            $scope.close(result, 500); // close, but give 500ms for bootstrap to animate
+                            close(result, 500); // close, but give 500ms for bootstrap to animate
                         };
 
                         $scope.rightClick = function () {
                             var i = Math.floor(Math.random() * 100);
-                            $scope.item = this.$parent.$root.items[i];
+                            $scope.item = items[i];
 
                         }
 
                         $scope.leftClick = function () {
                             var i = Math.floor(Math.random() * 100);
-                            $scope.item = this.$parent.$root.items[i];
+                            $scope.item = items[i];
                         }
 
-                    }]
+                    }],
+                    inputs: {
+                        items: $scope.items
+                    }
                 }).then(function(modal) {
                     modal.element.modal();
                     modal.close.then(function(result) {
