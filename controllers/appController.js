@@ -1,6 +1,5 @@
 app.controller('AppController', ['$scope', 'Items', function ($scope, Items) {
 
-
     Items.get(function(response){
         $scope.items = response;
     });
@@ -8,7 +7,5 @@ app.controller('AppController', ['$scope', 'Items', function ($scope, Items) {
     $scope.getItems = function () {
         return $scope.items;
     }
-    
-    
 
 }])

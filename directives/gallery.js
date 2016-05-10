@@ -9,6 +9,13 @@ app.directive('gallery', function () {
             items : "=",
             displaySearch : "="
         },
+        link : function (scope, element, attrs) {
+            attrs.$observe('search', function (newValue, oldValue) {
+                if (newValue !== oldValue){
+                    scope.search = newValue;
+                }
+            })
+        },
         controller : ['$scope', 'ModalService', function($scope, ModalService){
 
             $scope.orderProp = 'date';
@@ -27,7 +34,6 @@ app.directive('gallery', function () {
             };
 
             $scope.itemClicked = function (item){
-                console.log("displaySearch : " + $scope.displaySearch);
                 ModalService.showModal({
                     templateUrl: 'templates/modal.html',
                     controller: ['$scope', 'items', 'close', function ($scope, items, close) {
