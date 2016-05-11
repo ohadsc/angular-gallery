@@ -1,11 +1,13 @@
-app.controller('AppController', ['$scope', 'Items', function ($scope, Items) {
+app.controller('AppController', ['Items', function (Items) {
+
+    var vm = this;
 
     Items.get(function(response){
-        $scope.items = response;
+        vm.items = response;
     });
 
-    $scope.getItems = function () {
-        return $scope.items;
-    }
+    vm.getItems = function () {
+        return vm.items;
+    };
 
 }])

@@ -7,14 +7,15 @@ app.directive('gallery', function () {
         templateUrl: 'templates/list.html',
         scope : {
             items : "=",
-            displaySearch : "="
+            displaySearch : "=",
+            search: "="
         },
         link : function (scope, element, attrs) {
-            attrs.$observe('search', function (newValue, oldValue) {
+            /*attrs.$observe('search', function (newValue, oldValue) {
                 if (newValue !== oldValue){
                     scope.search = newValue;
                 }
-            })
+            })*/
         },
         controller : ['$scope', 'ModalService', function($scope, ModalService){
 
