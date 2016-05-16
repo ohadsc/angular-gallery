@@ -29,24 +29,6 @@
         <div ng-app="galleryModule" ng-strict-di>
             <ng-view></ng-view>
         </div>
-    <script>
-        function countWatch() {
-            var watchers = [];
 
-            var f = function (element) {
-                if (element.data().hasOwnProperty('$scope')) {
-                    angular.forEach(element.data().$scope.$$watchers, function (watcher) {
-                        watchers.push(watcher);
-                    });
-                }
-                angular.forEach(element.children(), function (childElement) {
-                    f($(childElement));
-                });
-            };
-
-            f(angular.element('body'));
-            console.log(watchers.length);
-        }
-    </script>
     </body>
 </html>
